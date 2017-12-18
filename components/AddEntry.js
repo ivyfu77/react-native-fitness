@@ -10,11 +10,12 @@ import { submitEntry, removeEntry } from '../utils/api';
 import { connect } from 'react-redux';
 import { addEntry } from '../actions';
 import { white, purple } from '../utils/colors';
+import { NavigationActions } from 'react-navigation';
 
 function SubmitBtn ({ onPress }) {
   return (
     <TouchableOpacity
-      style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styes.androidSubmitBtn}
+      style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.androidSubmitBtn}
       onPress={onPress}>
       <Text style={styles.submitBtnText}>SUBMIT</Text>
     </TouchableOpacity>
@@ -75,6 +76,7 @@ class AddEntry extends Component {
     }))
 
     // Navigate to home
+    this.toHome();
 
     submitEntry({ entry, key });
 
@@ -91,8 +93,15 @@ class AddEntry extends Component {
     }))
 
     // Route to home
+    this.toHome();
 
     removeEntry(key);
+  }
+
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationActions.back({
+      key: 'AddEntry'
+    }))
   }
 
   render () {
