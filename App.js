@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import History from './components/History';
 import EntryDetail from './components/EntryDetail';
+import Live from './components/Live';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { purple, white, gray } from './utils/colors';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
@@ -35,7 +36,14 @@ const Tabs = TabNavigator({
       tabBarLabel: 'Add Entry',
       tabBarIcon: ({ tintColor }) => (<FontAwesome name='plus-square' size={30} color={tintColor} />)
     }
-  }
+  },
+  Live: {
+    screen: Live,
+    navigationOptions: {
+      tabBarLabel: 'Live',
+      tabBarIcon: ({ tintColor }) => (<Ionicons name='ios-speedometer' size={30} color={tintColor} />)
+    }
+  },
 }, {
   navigationOptions: {
     header: null
